@@ -35,7 +35,7 @@ Basic Usage
 
 Drawing Images
 ==================
-The PIL library is used to draw images to the screen. Remember to pre-scale your image! Note: the library will attempt to convert any color images to black and white.
+The PIL library is used to draw images to the screen. Remember to pre-scale your image!
 
 '''python
     led = ssd1306_driver()

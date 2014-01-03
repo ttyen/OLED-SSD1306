@@ -221,7 +221,7 @@ class ssd1306_driver:
     def draw_image(self, image_file, x, y):
 	image = Image.open(image_file)
 	#to black and white
-	image = image.convert("1")
+	#image = image.convert("1")
 	#image to list
 	pixels = list(image.getdata())
 	#make pixel away

@@ -20,9 +20,9 @@ while True:
         led.draw_text2(0,24,text,1)
 	
 	#led.draw_image("/root/slatsmall.png",0,32);
-	#led.draw_text2(60,32,"Piranha",1)
-	#led.draw_text2(60,45,"Status: OK",1)
-	#led.draw_image("/root/piranha.png",0,32);
+	led.draw_text2(60,32,"Piranha",1)
+	led.draw_text2(60,45,"Status: OK",1)
+	led.draw_image("/root/piranha.png",0,32);
 
         led.display()
         time.sleep(2)
