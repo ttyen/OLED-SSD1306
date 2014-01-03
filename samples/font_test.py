@@ -1,55 +1,55 @@
-import gaugette.ssd1306
+import ssd1306.ssd1306
 import time
 import sys
 
 fonts = []
 
-from gaugette.fonts import arial_16
-from gaugette.fonts import arial_24
-from gaugette.fonts import arial_32
+from ssd1306.fonts import arial_16
+from ssd1306.fonts import arial_24
+from ssd1306.fonts import arial_32
 fonts += [arial_16,
           arial_24,
           arial_32]
 
-from gaugette.fonts import tahoma_16
-from gaugette.fonts import tahoma_24
-from gaugette.fonts import tahoma_32
+from ssd1306.fonts import tahoma_16
+from ssd1306.fonts import tahoma_24
+from ssd1306.fonts import tahoma_32
 fonts += [tahoma_16,
           tahoma_24,
           tahoma_32]
 
-from gaugette.fonts import verdana_15
-from gaugette.fonts import verdana_24
-from gaugette.fonts import verdana_32
+from ssd1306.fonts import verdana_15
+from ssd1306.fonts import verdana_24
+from ssd1306.fonts import verdana_32
 
 fonts += [verdana_15,
           verdana_24,
           verdana_32,
           ]
 
-from gaugette.fonts import stencil_16
-from gaugette.fonts import stencil_24
-from gaugette.fonts import stencil_33
+from ssd1306.fonts import stencil_16
+from ssd1306.fonts import stencil_24
+from ssd1306.fonts import stencil_33
 fonts += [stencil_16,
           stencil_24,
           stencil_33]
 
-from gaugette.fonts import old_english_30
+from ssd1306.fonts import old_english_30
 fonts += [old_english_30]
 
-from gaugette.fonts import magneto_16
-from gaugette.fonts import magneto_24
-from gaugette.fonts import magneto_32
+from ssd1306.fonts import magneto_16
+from ssd1306.fonts import magneto_24
+from ssd1306.fonts import magneto_32
 fonts += [magneto_16,
           magneto_24,
           magneto_32]
 
-from gaugette.fonts import curlz_22
-from gaugette.fonts import curlz_32
+from ssd1306.fonts import curlz_22
+from ssd1306.fonts import curlz_32
 fonts += [curlz_22,
           curlz_32]
 
-led = gaugette.ssd1306.SSD1306(buffer_cols=256)
+led = ssd1306.ssd1306.ssd1306_driver(buffer_cols=256)
 led.begin()
 led.clear_display()
 

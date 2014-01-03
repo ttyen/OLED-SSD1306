@@ -19,25 +19,37 @@ To communicate with the OLED display,  [spidev](https://github.com/doceme/py-spi
 
 To render image files to the OLED display [PIL](http://www.pythonware.com/products/pil/) is required (available in standard repositories).
 
-SSD1306 OLED Usage
+Basic Usage
 ==================
 
 ```python
-    import ssd1306.ssd1306
+    from ssd1306.ssd1306 import ssd1306_driver
     RESET_PIN = 15 # optional, defaults to 15
     DC_PIN    = 16 # optional, defaults to 16
-    led = gaugette.ssd1306.SSD1306(reset_pin=RESET_PIN, dc_pin=DC_PIN)
+    led = ssd1306_driver(reset_pin=RESET_PIN, dc_pin=DC_PIN)
     led.begin()
     led.clear_display()
     led.draw_text2(0,0,'Hello World',2)
     led.display()
 ```
 
-SSD1306 Font Usage
+Drawing Images
+==================
+The PIL library is used to draw images to the screen. Remember to pre-scale your image! Note: the library will attempt to convert any color images to black and white.
+
+'''python
+    led = ssd1306_driver()
+    led.begin()
+    led.clear_display()
+    led.draw_image("/home/jsmith/logo.png",0,32)
+    led.display()
+'''
+
+Font Usage
 ==================
 
 ```python
-    from gaugette.fonts import arial_16
+    from ssd1306.fonts import arial_16
     font = arial_16  # fonts are modules, does not need to be instantiated
     # draw_text3 returns the col position following the printed text.
     x = led.draw_text3(0,0,'Hello World',font)  
