@@ -229,6 +229,29 @@ class ssd1306_driver:
 	pixels = [pixels[i * width:(i+1) * width] for i in xrange(height)]
 	self.draw_bitmap(pixels, x, y)
 
+    def draw_progress(self, percent, x, y, width=128, height=5):
+	percent = percent % 100
+        textWidth = 20
+        self.draw_text2(x,y,str(percent)+"%",1)
+	pixWide = ((percent / 100.0)  * width) - 2 - textWidth # 1px spacing each side for vertical line
+        width = width - 2 - textWidth	
+
+        #Draw left/right borders
+        for i in range(0,height+1):
+            self.draw_pixel(x+1+textWidth, y+i)
+            self.draw_pixel(x+1+textWidth+width, y+i)
+
+        #Draw empty shell
+	for i in range(0,width):
+            self.draw_pixel(x+textWidth+i, y)
+	    self.draw_pixel(x+textWidth+i, y+height)
+
+        #Draw fill
+        for i in range(0, int(pixWide)):
+            for offset in range(0,height):
+                self.draw_pixel(x+textWidth+i,y+offset)
+
+
     def draw_pixel(self, x, y, on=True):
         self.bitmap.draw_pixel(x,y,on)
         
