@@ -233,7 +233,7 @@ class ssd1306_driver:
 	percent = percent % 100
         textWidth = 20
         self.draw_text2(x,y,str(percent)+"%",1)
-	pixWide = ((percent / 100.0)  * width) - 2 - textWidth # 1px spacing each side for vertical line
+	pixWide = ((percent / 100.0)  * (width-2-textWidth)) # 1px spacing each side for vertical line
         width = width - 2 - textWidth	
 
         #Draw left/right borders
@@ -242,14 +242,14 @@ class ssd1306_driver:
             self.draw_pixel(x+1+textWidth+width, y+i)
 
         #Draw empty shell
-	for i in range(0,width):
-            self.draw_pixel(x+textWidth+i, y)
-	    self.draw_pixel(x+textWidth+i, y+height)
+	for i in range(x+textWidth,x+textWidth+width):
+            self.draw_pixel(i, y)
+	    self.draw_pixel(i, y+height)
 
         #Draw fill
-        for i in range(0, int(pixWide)):
-            for offset in range(0,height):
-                self.draw_pixel(x+textWidth+i,y+offset)
+        for i in range(x+textWidth, x+textWidth+int(pixWide)):
+            for vert in range(y,y+height):
+                self.draw_pixel(i,vert)
 
 
     def draw_pixel(self, x, y, on=True):
