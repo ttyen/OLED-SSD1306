@@ -37,13 +37,13 @@ Drawing Images
 ==================
 The PIL library is used to draw images to the screen. Remember to pre-scale your image!
 
-'''python
+```python
     led = ssd1306_driver()
     led.begin()
     led.clear_display()
     led.draw_image("/home/jsmith/logo.png",0,32)
     led.display()
-'''
+```
 
 Font Usage
 ==================
