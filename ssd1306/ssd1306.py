@@ -97,7 +97,7 @@ class ssd1306_driver:
         self.mem_bytes = self.buffer_rows * self.cols / 8 # total bytes in SSD1306 display ram
         self.spi = spidev.SpiDev()
         self.spi.open(bus, device)
-        self.spi.max_speed_hz = 500000
+        self.spi.max_speed_hz = 1000000
 	self.resetpin = reset_pin 
 	self.dcpin = dc_pin
 	GPIO.setup(self.resetpin, GPIO.OUT)
@@ -237,18 +237,18 @@ class ssd1306_driver:
         width = width - 2 - textWidth	
 
         #Draw left/right borders
-        for i in range(0,height+1):
+        for i in xrange(0,height+1):
             self.draw_pixel(x+1+textWidth, y+i)
             self.draw_pixel(x+1+textWidth+width, y+i)
 
         #Draw empty shell
-	for i in range(x+textWidth,x+textWidth+width):
+	for i in xrange(x+textWidth,x+textWidth+width):
             self.draw_pixel(i, y)
 	    self.draw_pixel(i, y+height)
 
         #Draw fill
-        for i in range(x+textWidth, x+textWidth+int(pixWide)):
-            for vert in range(y,y+height):
+        for i in xrange(x+textWidth, x+textWidth+int(pixWide)):
+            for vert in xrange(y,y+height):
                 self.draw_pixel(i,vert)
 
 
@@ -259,13 +259,16 @@ class ssd1306_driver:
         font_bytes = self.font.bytes
         font_rows = self.font.rows
         font_cols = self.font.cols
+        bitmap = self.bitmap
+
         for c in string:
             p = ord(c) * font_cols
-            for col in range(0,font_cols):
+            for col in xrange(0,font_cols):
                 mask = font_bytes[p]
                 p+=1
-                for row in range(0,8):
-                    self.draw_pixel(x,y+row,mask & 0x1)
+                for row in xrange(0,8):
+                    # Create new draw_pixels function which draws multiple pixels for speedup
+                    bitmap.draw_pixel(x,y+row,mask & 0x1)
                     mask >>= 1
                 x += 1
 
@@ -275,14 +278,14 @@ class ssd1306_driver:
         font_cols = self.font.cols
         for c in string:
             p = ord(c) * font_cols
-            for col in range(0,font_cols):
+            for col in xrange(0,font_cols):
                 mask = font_bytes[p]
                 p+=1
                 py = y
-                for row in range(0,8):
-                    for sy in range(0,size):
+                for row in xrange(0,8):
+                    for sy in xrange(0,size):
                         px = x
-                        for sx in range(0,size):
+                        for sx in xrange(0,size):
                             self.draw_pixel(px,py,mask & 0x1)
                             px += 1
                         py += 1
@@ -312,16 +315,17 @@ class ssd1306_driver:
             self.data = [0] * (self.cols * self.bytes_per_col)
     
         def clear(self):
-            for i in range(0,len(self.data)):
-                self.data[i] = 0
+            self.data = [0 for x in self.data] #emz speed
+            #for i in xrange(0,len(self.data)):
+            #    self.data[i] = 0
 
         # Diagnostic print of the memory buffer to stdout 
         def dump(self):
-            for y in range(0, self.rows):
+            for y in xrange(0, self.rows):
                 mem_row = y/8
                 bit_mask = 1 << (y % 8)
                 line = ""
-                for x in range(0, self.cols):
+                for x in xrange(0, self.cols):
                     mem_col = x
                     offset = mem_row + self.rows/8 * mem_col
                     if self.data[offset] & bit_mask:
@@ -344,8 +348,8 @@ class ssd1306_driver:
                 self.data[offset] &= (0xFF - bit_mask)
     
         def clear_block(self, x0,y0,dx,dy):
-            for x in range(x0,x0+dx):
-                for y in range(y0,y0+dy):
+            for x in xrange(x0,x0+dx):
+                for y in xrange(y0,y0+dy):
                     self.draw_pixel(x,y,0)
 
         # returns the width in pixels of the string allowing for kerning & interchar-spaces
@@ -388,11 +392,11 @@ class ssd1306_driver:
                     prev_width = width
                     
                     bytes_per_row = (width + 7) / 8
-                    for row in range(0,height):
+                    for row in xrange(0,height):
                         py = y + row
                         mask = 0x80
                         p = offset
-                        for col in range(0,width):
+                        for col in xrange(0,width):
                             px = x + col
                             if (font.bitmaps[p] & mask):
                                 self.draw_pixel(px,py,1)  # for kerning, never draw black
@@ -448,7 +452,7 @@ class ssd1306_driver:
             if delta!=0:
                 steps = abs(delta)
                 sign = delta/steps
-                for i in range(0,steps):
+                for i in xrange(0,steps):
                     if i>0 and delay>0:
                         time.sleep(delay)
                     self.scroll(sign)
@@ -461,7 +465,7 @@ class ssd1306_driver:
     
             count = len(self.list)
             step = cmp(delta, 0)
-            for i in range(0,delta, step):
+            for i in xrange(0,delta, step):
                 if (self.position % self.rows) == 0:
                     n = self.position / self.rows
                     # at even boundary, need to update hidden row
