@@ -1,3 +1,5 @@
+## Written by Charles A. Hamilton, HudsonWerks LLC
+
 from ssd1306.ssd1306 import ssd1306_driver
 from ssd1306.fonts import arial_narrow_16, arial_16
 import time
