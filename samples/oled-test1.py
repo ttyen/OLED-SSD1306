@@ -19,9 +19,9 @@ while True:
 
         text = "GROUND CONTROL:"
         led.draw_text2(0,14,text,1)
-
         text = "Commence countdown"
         led.draw_text2(0,24,text,1)
+
         led.draw_text2(0,42,"ENGINES",1)
         led.draw_text2(0,52,"Status: ON",1);
 
