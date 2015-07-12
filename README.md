@@ -3,6 +3,7 @@ ssd1306-bbb
 
 A library for interfacing the SSD1306 OLED display with the BeagleBone Black.
 Based off of [py-gaugette](https://github.com/guyc/py-gaugette) by Guy Carpenter.
+With modified sample code by Charles A. Hamilton
 
 Prerequisites
 =============
