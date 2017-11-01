@@ -90,7 +90,7 @@ class ssd1306_driver:
     # We will keep d/c low and bump it high only for commands with data
     # reset is normally HIGH, and pulled LOW to reset the display
 
-    def __init__(self, bus=1, device=0, dc_pin="P9_16", reset_pin="P9_15", buffer_rows=64, buffer_cols=128, rows=32, cols=128):
+    def __init__(self, bus=1, device=0, dc_pin="P9_15", reset_pin="P9_12", buffer_rows=64, buffer_cols=128, rows=64, cols=128):
         self.cols = cols
         self.rows = rows
         self.buffer_rows = buffer_rows
