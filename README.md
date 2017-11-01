@@ -68,6 +68,8 @@ textSize = led.draw_text3(0,0,'451\177F', font)
 Installation:
 =============
 git clone https://github.com/ttyen/OLED-SSD1306
+
 cd OLED-SSD1306
+
 python setup.py install
 
