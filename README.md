@@ -25,9 +25,7 @@ Basic Usage
 
 ```python
     from ssd1306.ssd1306 import ssd1306_driver
-    RESET_PIN = 15 # optional, defaults to 15
-    DC_PIN    = 16 # optional, defaults to 16
-    led = ssd1306_driver(reset_pin=RESET_PIN, dc_pin=DC_PIN)
+    led = ssd1306_driver()
     led.begin()
     led.clear_display()
     led.draw_text2(0,0,'Hello World',2)
@@ -42,7 +40,7 @@ The PIL library is used to draw images to the screen. Remember to pre-scale your
     led = ssd1306_driver()
     led.begin()
     led.clear_display()
-    led.draw_image("/home/jsmith/logo.png",0,32)
+    led.draw_image("/home/debian/OIT.png",0,32)
     led.display()
 ```
 
