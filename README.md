@@ -5,6 +5,16 @@ A library for interfacing the SSD1306 OLED display with the BeagleBone Black.
 Based off of [py-gaugette](https://github.com/guyc/py-gaugette) by Guy Carpenter.
 With modified sample code by Charles A. Hamilton
 
+Wiring OLED -> BBB
+===================
+GND      -> P9-1
+VCC      -> P9-3
+D0(SCL)  -> P9-22
+D1(SDA)  -> P9-18
+RES      -> P9-12
+DC       -> P9-15
+
+
 Prerequisites
 =============
 
