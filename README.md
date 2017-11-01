@@ -12,13 +12,18 @@ Prerequisites
 
 The [Adafruit BeagleBone Black IO library](https://aur.archlinux.org/packages/python2-bbio/) is required for GPIO manipulation (available in AUR).
 
-### py-spidev
+SPI setting:
+Beaglebone Black pin configuration:
+RST = 'P9_12'
+Note the following are only used with SPI:
+DC = 'P9_15'
+SPI_PORT = 1
+SPI_DEVICE = 0
 
-To communicate with the OLED display,  [spidev](https://github.com/doceme/py-spidev) is required (available in AUR).
+BBB: Debian 7.9, python 2.7.3
 
-### PIL 
-
-To render image files to the OLED display [PIL](http://www.pythonware.com/products/pil/) is required (available in standard repositories).
+OLED: 6 pins, OLED Driver IC: SSD1306, Resolution: 128 x 64
+http://www.rhydolabz.com/displays-c-88/096-oled-display-module-spii2c-128x64-6-pin-white-p-2260.html
 
 Basic Usage
 ==================
